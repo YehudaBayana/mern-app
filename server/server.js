@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const db = require('./DB');
 const studentRouter = require('./routes/studentsRoute');
@@ -23,3 +24,10 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res) => {
+    res, sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
