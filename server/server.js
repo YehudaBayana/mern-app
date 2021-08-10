@@ -3,8 +3,11 @@ dotenv.config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const db = require('./DB');
-const studentRouter = require('./routes/studentsRoute');
+const db = require('./DB/mongoConnect');
+// const studentRouter = require('./routes/studentsRoute');
+
+const dbConnect = require('./db/mongoConnect');
+const { routeInit } = require('./routes/configRoute');
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,7 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use('/students', studentRouter);
+// app.use('/students', studentRouter);
+routeInit(app);
 
 // app.get('/', (req, res) => {
 //   res.send({ msg: 'express work' });
