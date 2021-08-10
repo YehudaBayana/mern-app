@@ -8,6 +8,7 @@ const {
   genToken,
 } = require('../models/userModel');
 const { authToken } = require('../auth/authToken');
+const validationData = require('../validation/validationData');
 
 const router = express.Router();
 
@@ -33,6 +34,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/userInfo', authToken, async (req, res) => {
+  validationData(req.body);
   let user = await UserModel.findOne({ _id: req.tokenData._id });
   res.json(user);
 });

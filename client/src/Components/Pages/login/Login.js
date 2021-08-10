@@ -13,8 +13,8 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: state.email,
-        pass: state.pass,
+        email: state.users.email,
+        pass: state.users.pass,
       }),
     })
       .then((res) => {
@@ -53,7 +53,7 @@ const Login = () => {
                 type='email'
                 className='login-field'
                 onChange={(e) =>
-                  dispatch({ type: 'SET_EMAIL', payload: e.target.value })
+                  dispatch({ type: 'SET_USER_EMAIL', payload: e.target.value })
                 }
                 placeholder='email'
                 id='login-name'
@@ -69,7 +69,7 @@ const Login = () => {
                 type='password'
                 className='login-field'
                 onChange={(e) =>
-                  dispatch({ type: 'SET_PASS', payload: e.target.value })
+                  dispatch({ type: 'SET_USER_PASS', payload: e.target.value })
                 }
                 placeholder='password'
                 id='login-pass'

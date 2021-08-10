@@ -5,6 +5,7 @@ const studentSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   email: String,
+  class: String,
   image: String,
   description: String,
   grades: [
@@ -27,8 +28,8 @@ exports.validStudent = (_bodyData) => {
   let joiSchema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
-    email: Joi.string().min(1).max(50),
-    class: Joi.string().min(1).max(50),
+    email: Joi.string().min(1).max(50).required(),
+    class: Joi.string().min(1).max(50).required(),
     image: Joi.string().min(1).max(1000),
     description: Joi.string().min(1).max(9999),
     grades: Joi.array().items({

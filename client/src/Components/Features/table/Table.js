@@ -7,11 +7,11 @@ const Table = () => {
   useEffect(() => {
     fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setStudents(data));
   }, []);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 110 },
+    // { field: 'id', headerName: 'ID', width: 110 },
     {
       field: 'firstName',
       headerName: 'First name',
@@ -27,7 +27,6 @@ const Table = () => {
     {
       field: 'date_created',
       headerName: 'date',
-      // type: 'number',
       width: 160,
       editable: true,
     },
@@ -53,7 +52,6 @@ const Table = () => {
       headerName: 'grade',
       width: 160,
       valueGetter: (params) => {
-        // console.log({ params });
         let result = [];
         if (params.row.grades) {
           if (params.row.grades[0].grade) {
@@ -67,25 +65,14 @@ const Table = () => {
     },
   ];
 
-  //   const arrayOfObj = [{
-  //     key1: 'value1',
-  //     key2: 'value2'
-  //   }, {
-  //     key1: 'value1',
-  //     key2: 'value2'
-  //   }];
-  // console.log('im students: ', students);
-  // const newArrayOfObj = students.map(({ _id: id, ...rest }) => ({
-  //   id,
-  //   ...rest,
-  // }));
-
-  // console.log(newArrayOfObj);
-  //   console.log(students);
+  const newArrayOfObj = students.map(({ _id: id, ...rest }) => ({
+    id,
+    ...rest,
+  }));
 
   return (
     <>
-      {/* {newArrayOfObj && (
+      {newArrayOfObj && (
         <div style={{ marginRight: '250px' }}>
           <div
             style={{
@@ -105,7 +92,7 @@ const Table = () => {
             />
           </div>
         </div>
-      )} */}
+      )}
 
       {/* <div className='table__wrapper'>
         <table id='customers'>
