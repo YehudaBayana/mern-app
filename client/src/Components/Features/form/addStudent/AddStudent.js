@@ -16,7 +16,12 @@ const AddStudent = () => {
         lastName: state.students.lastName,
         email: state.students.email,
         class: state.students.class,
-        grades: [],
+        grades: [
+          {
+            test: 'no tests',
+            grade: 0,
+          },
+        ],
       }),
     })
       .then((res) => {
