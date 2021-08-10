@@ -5,7 +5,7 @@ import './table.css';
 const Table = () => {
   const [students, setStudents] = useState([]);
   useEffect(() => {
-    fetch('https://mern-jk.herokuapp.com/students')
+    fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);

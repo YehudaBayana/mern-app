@@ -10,7 +10,7 @@ function App() {
 
   const postStudent = (e) => {
     e.preventDefault();
-    fetch('https://mern-jk.herokuapp.com/students', {
+    fetch('https://mern-jk.herokuapp.com/api/students', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

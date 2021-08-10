@@ -8,7 +8,7 @@ import './main.css';
 const Main = ({ user }) => {
   const [students, setStudents] = useState([]);
   useEffect(() => {
-    fetch('https://mern-jk.herokuapp.com/students')
+    fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
       .then((data) => setStudents(data));
   }, []);
