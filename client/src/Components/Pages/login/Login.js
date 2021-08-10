@@ -7,7 +7,7 @@ const Login = () => {
 
   function loginForm(e) {
     e.preventDefault();
-    fetch('http://localhost:8080/users/login', {
+    fetch('https://mern-jk.herokuapp.com/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const Login = () => {
       })
       .then((data) => {
         if (data.token) {
-          fetch('http://localhost:8080/users/userInfo', {
+          fetch('https://mern-jk.herokuapp.com/api/users/userInfo', {
             headers: {
               'x-api-key': data.token,
             },
