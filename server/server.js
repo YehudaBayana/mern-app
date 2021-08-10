@@ -3,17 +3,17 @@ dotenv.config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const db = require('./DB/mongoConnect');
+// const db = require('./DB/mongoConnect');
 // const studentRouter = require('./routes/studentsRoute');
 
-const dbConnect = require('./db/mongoConnect');
+const dbConnect = require('./DB/mongoConnect');
 const { routeInit } = require('./routes/configRoute');
 
 const PORT = process.env.PORT || 8080;
 
-db.on('err', () => {
-  console.error('there is error');
-});
+// db.on('err', () => {
+//   console.error('there is error');
+// });
 
 const app = express();
 app.use(express.json());
