@@ -13,15 +13,15 @@ db.on('err', () => {
 });
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use('/students', studentRouter);
 
-app.get('/', (req, res) => {
-  res.send({ msg: 'express work' });
-});
+// app.get('/', (req, res) => {
+//   res.send({ msg: 'express work' });
+// });
 
 app.listen(PORT);
 
