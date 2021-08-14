@@ -33,8 +33,8 @@ exports.validStudent = (_bodyData) => {
     image: Joi.string().min(1).max(1000),
     description: Joi.string().min(1).max(9999),
     grades: Joi.array().items({
-      test: Joi.string().min(1).max(20),
-      grade: Joi.number().min(1).max(110),
+      test: Joi.string().min(0).max(20),
+      grade: Joi.number().min(0).max(110),
     }),
   });
   return joiSchema.validate(_bodyData);

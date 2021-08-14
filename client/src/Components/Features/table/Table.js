@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import './table.css';
+import { StoreContext } from '../../customHooks/ContextProvider';
 
 const Table = () => {
+  const { state } = useContext(StoreContext);
   const [students, setStudents] = useState([]);
   useEffect(() => {
     fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
       .then((data) => setStudents(data));
-  }, []);
+  }, [state.forRender]);
 
   const columns = [
     // { field: 'id', headerName: 'ID', width: 110 },
@@ -35,7 +37,6 @@ const Table = () => {
       headerName: 'test',
       width: 160,
       valueGetter: (params) => {
-        console.log({ params });
         let result = [];
         if (params.row.grades) {
           if (params.row.grades[0].test) {
@@ -62,6 +63,12 @@ const Table = () => {
         }
         return result.join(', ');
       },
+    },
+    {
+      field: 'class',
+      headerName: 'class',
+      width: 160,
+      editable: true,
     },
   ];
 
@@ -90,28 +97,10 @@ const Table = () => {
               checkboxSelection
               disableSelectionOnClick
             />
+            <button>do some</button>
           </div>
         </div>
       )}
-
-      {/* <div className='table__wrapper'>
-        <table id='customers'>
-          <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-          </tr>
-          {students.map((student) => {
-            return (
-              <tr key={student._id}>
-                <td>{student.firstName}</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
-            );
-          })}
-        </table>
-      </div> */}
     </>
   );
 };

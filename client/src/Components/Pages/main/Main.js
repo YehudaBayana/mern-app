@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { StoreContext } from '../../customHooks/ContextProvider';
 import Courses from '../../Features/courses/Courses';
 import SideBar from '../../Features/sideBar/SideBar';
 import Table from '../../Features/table/Table';
@@ -6,12 +7,19 @@ import UserOptions from '../../Features/userOptions/UserOptions';
 import './main.css';
 
 const Main = ({ user }) => {
+  const { state, dispatch } = useContext(StoreContext);
+
   const [students, setStudents] = useState([]);
   useEffect(() => {
     fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
       .then((data) => setStudents(data));
   }, []);
+
+  function handleLogOut() {
+    dispatch({ type: 'CLEAR_USER' });
+    localStorage.clear();
+  }
   return (
     <>
       <div>
@@ -25,6 +33,18 @@ const Main = ({ user }) => {
                   קריירה
                 </a>
               </div>
+            </div>
+
+            <div className='navigation'>
+              <a className='button' href=''>
+                <img
+                  alt=''
+                  src='https://pbs.twimg.com/profile_images/378800000639740507/fc0aaad744734cd1dbc8aeb3d51f8729_400x400.jpeg'
+                />
+                <div onClick={handleLogOut} className='logout'>
+                  LOGOUT
+                </div>
+              </a>
             </div>
           </nav>
           <div className='p-4'>

@@ -4,8 +4,10 @@ import { createContext, useReducer } from 'react';
 export const StoreContext = createContext();
 
 const initialState = {
+  forRender: 1,
   users: {
     user: null,
+    fullName: '',
     email: '',
     pass: null,
   },
@@ -19,12 +21,35 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'FOR_RENDER':
+      return {
+        ...state,
+        forRender:
+          state.forRender === 1 ? (state.forRender = 0) : (state.forRender = 0),
+      };
     case 'SET_USER':
       return {
         ...state,
         users: {
           ...state.users,
           user: action.payload,
+        },
+      };
+    case 'CLEAR_USER':
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          user: null,
+        },
+      };
+
+    case 'SET_USER_FULL_NAME':
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          fullName: action.payload,
         },
       };
     case 'SET_USER_PASS':
@@ -77,7 +102,7 @@ function reducer(state, action) {
       };
 
     default:
-      break;
+      return state;
   }
 }
 

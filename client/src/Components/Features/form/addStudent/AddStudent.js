@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { StoreContext } from '../../../customHooks/ContextProvider';
 import './addStudent.css';
 
+export let forRender = 1;
 const AddStudent = () => {
   const { state, dispatch } = useContext(StoreContext);
+
   const postStudent = (e) => {
     e.preventDefault();
     return fetch('https://mern-jk.herokuapp.com/api/students', {
@@ -19,14 +21,18 @@ const AddStudent = () => {
         grades: [
           {
             test: 'no tests',
-            grade: 0,
+            grade: 1,
           },
         ],
       }),
     })
       .then((res) => {
-        console.log(res.body);
-        return false;
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: 'FOR_RENDER' });
+        return true;
       })
       .catch((err) => {
         console.log(err);
@@ -88,6 +94,9 @@ const AddStudent = () => {
               }
               name='courses'
             >
+              <option disabled selected value>
+                בחר תפקיד
+              </option>
               <option value='full-stack development'>פיתוח תוכנה</option>
               <option value='QA'>בדיקת תוכנה</option>
               <option value='data Security'>אבטחת מידע</option>
@@ -96,6 +105,9 @@ const AddStudent = () => {
           </fieldset>
           <fieldset>
             <button
+              // onClick={() => {
+              //   forRender === 1 ? (forRender = 0) : (forRender = 0);
+              // }}
               name='submit'
               type='submit'
               id='contact-submit'
