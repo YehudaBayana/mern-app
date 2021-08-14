@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import './table.css';
+import { StoreContext } from '../../customHooks/ContextProvider';
 
 const Table = () => {
+  const { state } = useContext(StoreContext);
   const [students, setStudents] = useState([]);
   useEffect(() => {
-    fetch('https://mern-jk.herokuapp.com/students')
+    fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+      .then((data) => setStudents(data));
+  }, [state.forRender]);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 110 },
+    // { field: 'id', headerName: 'ID', width: 110 },
     {
       field: 'firstName',
       headerName: 'First name',
@@ -27,7 +29,6 @@ const Table = () => {
     {
       field: 'date_created',
       headerName: 'date',
-      // type: 'number',
       width: 160,
       editable: true,
     },
@@ -36,7 +37,6 @@ const Table = () => {
       headerName: 'test',
       width: 160,
       valueGetter: (params) => {
-        console.log({ params });
         let result = [];
         if (params.row.grades) {
           if (params.row.grades[0].test) {
@@ -53,7 +53,6 @@ const Table = () => {
       headerName: 'grade',
       width: 160,
       valueGetter: (params) => {
-        // console.log({ params });
         let result = [];
         if (params.row.grades) {
           if (params.row.grades[0].grade) {
@@ -65,27 +64,22 @@ const Table = () => {
         return result.join(', ');
       },
     },
+    {
+      field: 'class',
+      headerName: 'class',
+      width: 160,
+      editable: true,
+    },
   ];
 
-  //   const arrayOfObj = [{
-  //     key1: 'value1',
-  //     key2: 'value2'
-  //   }, {
-  //     key1: 'value1',
-  //     key2: 'value2'
-  //   }];
-  // console.log('im students: ', students);
-  // const newArrayOfObj = students.map(({ _id: id, ...rest }) => ({
-  //   id,
-  //   ...rest,
-  // }));
-
-  // console.log(newArrayOfObj);
-  //   console.log(students);
+  const newArrayOfObj = students.map(({ _id: id, ...rest }) => ({
+    id,
+    ...rest,
+  }));
 
   return (
     <>
-      {/* {newArrayOfObj && (
+      {newArrayOfObj && (
         <div style={{ marginRight: '250px' }}>
           <div
             style={{
@@ -103,28 +97,10 @@ const Table = () => {
               checkboxSelection
               disableSelectionOnClick
             />
+            <button>do some</button>
           </div>
         </div>
-      )} */}
-
-      {/* <div className='table__wrapper'>
-        <table id='customers'>
-          <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-          </tr>
-          {students.map((student) => {
-            return (
-              <tr key={student._id}>
-                <td>{student.firstName}</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
-            );
-          })}
-        </table>
-      </div> */}
+      )}
     </>
   );
 };
