@@ -63,17 +63,17 @@ body {
   margin: 5px;
   color: white;
   width: 45px;
-  background-color: black;
+  /* background-color: black; */
   transition: width 0.35s;
   -webkit-transition: width 0.35s;
   overflow: hidden;
 }
 
-.navigation a:hover {
+.navigation a {
   width: 120px;
 }
 
-.navigation a:hover .logout {
+.navigation a .logout {
   opacity: 0.9;
 }
 

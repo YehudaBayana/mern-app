@@ -15,10 +15,10 @@ const Login = () => {
     }
   }, []);
 
-  async function loginForm(con = true, e) {
-    if (con) {
-      e.preventDefault();
-    }
+  async function loginForm(e) {
+    e.preventDefault();
+    // if (con) {
+    // }
     const loginRes = await fetch(
       'https://mern-jk.herokuapp.com/api/users/login',
       {

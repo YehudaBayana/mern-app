@@ -47,6 +47,7 @@ const Main = ({ user }) => {
               </a>
             </div>
           </nav>
+          <h1>האתר הזה עדיין לא גמור אין מה להתרשם פה</h1>
           <div className='p-4'>
             <div className='welcome'>
               <div className='content rounded-3 p-3'>
