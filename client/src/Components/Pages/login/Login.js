@@ -17,8 +17,7 @@ const Login = () => {
 
   async function loginForm(e) {
     e.preventDefault();
-    // if (con) {
-    // }
+
     const loginRes = await fetch(
       'https://mern-jk.herokuapp.com/api/users/login',
       {
@@ -64,8 +63,7 @@ const Login = () => {
 
   function registerForm(e) {
     e.preventDefault();
-    // console.log(e);
-    fetch('http://localhost:8080/api/users', {
+    fetch('https://mern-jk.herokuapp.com/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +77,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        loginForm(false);
+        loginForm(e);
       });
   }
 

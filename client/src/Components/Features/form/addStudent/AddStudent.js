@@ -42,8 +42,8 @@ const AddStudent = () => {
     <>
       <div className='container'>
         <form onSubmit={postStudent} id='contact'>
-          <h3>Colorlib Contact Form</h3>
-          <h4>Contact us for custom quote</h4>
+          <h3>add student to the list</h3>
+          <h4>refresh the page for see changes</h4>
           <fieldset>
             <input
               placeholder='student first name'
