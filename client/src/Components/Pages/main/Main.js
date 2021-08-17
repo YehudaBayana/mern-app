@@ -53,7 +53,7 @@ const Main = ({ user }) => {
               <div className='content rounded-3 p-3'>
                 <h1 className='fs-3'>צהריים טובים {user.fullName}</h1>
                 <p className='mb-0'>
-                  Hello Jone Doe, welcome to your awesome dashboard!
+                  Hello {user.fullName}, welcome to your awesome dashboard!
                 </p>
               </div>
             </div>
