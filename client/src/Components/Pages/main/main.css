@@ -105,6 +105,12 @@ i {
   z-index: 9999999;
 }
 
+@media (max-width: 777px) {
+  .sidebar {
+    width: 0;
+  }
+}
+
 .sidebar .close-aside {
   position: absolute;
   top: 7px;

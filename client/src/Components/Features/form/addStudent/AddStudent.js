@@ -105,9 +105,6 @@ const AddStudent = () => {
           </fieldset>
           <fieldset>
             <button
-              // onClick={() => {
-              //   forRender === 1 ? (forRender = 0) : (forRender = 0);
-              // }}
               name='submit'
               type='submit'
               id='contact-submit'
