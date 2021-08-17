@@ -5,18 +5,22 @@ export const StoreContext = createContext();
 
 const initialState = {
   forRender: 1,
-  users: {
-    user: null,
-    fullName: '',
-    email: '',
-    pass: null,
-  },
-  students: {
+  user: null,
+  fullName: '',
+  email: '',
+  pass: null,
+  student: {
     firstName: '',
     lastName: '',
     email: '',
     class: '',
   },
+  rooms: [
+    { id: 0, name: 'lobby' },
+    { id: 1, name: 'javascript' },
+  ],
+  activeRoomId: 0,
+  messages: [{ id: 1, from: 'yuda', text: 'first message' }],
 };
 
 function reducer(state, action) {
@@ -30,75 +34,70 @@ function reducer(state, action) {
     case 'SET_USER':
       return {
         ...state,
-        users: {
-          ...state.users,
-          user: action.payload,
-        },
+        user: action.payload,
       };
     case 'CLEAR_USER':
       return {
         ...state,
-        users: {
-          ...state.users,
-          user: null,
-        },
+        user: null,
       };
 
     case 'SET_USER_FULL_NAME':
       return {
         ...state,
-        users: {
-          ...state.users,
-          fullName: action.payload,
-        },
+        fullName: action.payload,
       };
     case 'SET_USER_PASS':
       return {
         ...state,
-        users: {
-          ...state.users,
-          pass: action.payload,
-        },
+        pass: action.payload,
       };
     case 'SET_USER_EMAIL':
       return {
         ...state,
-        users: {
-          ...state.users,
-          email: action.payload,
-        },
+        email: action.payload,
       };
     case 'SET_STUDENT_FIRST_NAME':
       return {
         ...state,
-        students: {
-          ...state.students,
+        student: {
+          ...state.student,
           firstName: action.payload,
         },
       };
     case 'SET_STUDENT_LAST_NAME':
       return {
         ...state,
-        students: {
-          ...state.students,
+        student: {
+          ...state.student,
           lastName: action.payload,
         },
       };
     case 'SET_STUDENT_EMAIL':
       return {
         ...state,
-        students: {
-          ...state.students,
+        student: {
+          ...state.student,
           email: action.payload,
         },
       };
     case 'SET_STUDENT_CLASS':
       return {
         ...state,
-        students: {
-          ...state.students,
+        student: {
+          ...state.student,
           class: action.payload,
         },
+      };
+    case 'ADD_MESSAGES':
+      return {
+        ...state,
+        messages: [...state.messages, ...action.payload],
+      };
+    case 'ADD_MESSAGE':
+      return {
+        ...state,
+        messages: [...state.messages, action.payload],
       };
 
     default:

@@ -26,8 +26,8 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: state.users.email,
-          pass: state.users.pass,
+          email: state.email,
+          pass: state.pass,
         }),
       }
     );
@@ -69,9 +69,9 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        fullName: state.users.fullName,
-        email: state.users.email,
-        pass: state.users.pass,
+        fullName: state.fullName,
+        email: state.email,
+        pass: state.pass,
       }),
     })
       .then((res) => res.json())

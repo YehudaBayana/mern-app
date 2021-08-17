@@ -23,7 +23,6 @@ const Main = ({ user }) => {
   return (
     <>
       <div>
-        <SideBar user={user} />
         <section id='wrapper'>
           <nav className='navbar navbar-expand-md'>
             <div className='container-fluid mx-2'>
@@ -37,10 +36,6 @@ const Main = ({ user }) => {
 
             <div className='navigation'>
               <a className='button' href=''>
-                <img
-                  alt=''
-                  src='https://pbs.twimg.com/profile_images/378800000639740507/fc0aaad744734cd1dbc8aeb3d51f8729_400x400.jpeg'
-                />
                 <div onClick={handleLogOut} className='logout'>
                   LOGOUT
                 </div>

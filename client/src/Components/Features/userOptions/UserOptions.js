@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const UserOptions = () => {
   return (
@@ -34,8 +35,10 @@ const UserOptions = () => {
               <i className='uil-users-alt fs-2 text-center bg-success rounded-circle' />
               <div className='ms-3'>
                 <div className='d-flex align-items-center'>
-                  <h3 className='mb-0'>5,245</h3>
-                  <span className='d-block ms-2'>Users</span>
+                  <Link to='/chat'>
+                    <h3 className='mb-0'>Users chat</h3>
+                  </Link>
+                  <span className='d-block ms-2'></span>
                 </div>
                 <p className='fs-normal mb-0'>Lorem ipsum dolor sit amet</p>
               </div>

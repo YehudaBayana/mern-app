@@ -2,21 +2,33 @@ import './App.css';
 import { useContext } from 'react';
 import Login from './Components/Pages/login/Login';
 import { StoreContext } from './Components/customHooks/ContextProvider';
+import { Route, Switch } from 'react-router-dom';
 import Main from './Components/Pages/main/Main';
 import AddStudent from './Components/Features/form/addStudent/AddStudent';
+import Chat from './Components/Pages/chat/Chat';
+import SideBar from './Components/Features/sideBar/SideBar';
 
 function App() {
   const { state } = useContext(StoreContext);
   return (
     <>
-      {!state.users?.user ? (
+      {!state?.user ? (
         <>
           <Login />
         </>
       ) : (
         <div className='App'>
-          <Main user={state.users.user} />
-          <AddStudent />
+          <SideBar user={state.user} />
+
+          <Switch>
+            <Route exact path='/'>
+              <Main user={state.user} />
+              <AddStudent />
+            </Route>
+            <Route exact path='/chat'>
+              <Chat />
+            </Route>
+          </Switch>
         </div>
       )}
     </>

@@ -14,10 +14,10 @@ const AddStudent = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstName: state.students.firstName,
-        lastName: state.students.lastName,
-        email: state.students.email,
-        class: state.students.class,
+        firstName: state.student.firstName,
+        lastName: state.student.lastName,
+        email: state.student.email,
+        class: state.student.class,
         grades: [
           {
             test: 'no tests',
