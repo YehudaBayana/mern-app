@@ -40,7 +40,7 @@ const AddStudent = () => {
   };
   return (
     <>
-      <div className='container'>
+      <div className='form__container'>
         <form onSubmit={postStudent} id='contact'>
           <h3>add student to the list</h3>
           <h4>refresh the page for see changes</h4>

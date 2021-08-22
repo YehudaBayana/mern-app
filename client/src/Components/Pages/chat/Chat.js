@@ -5,13 +5,17 @@ const Chat = () => {
   let user = JSON.parse(localStorage.getItem('user'));
   const { state, dispatch } = useContext(StoreContext);
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetch('https://mern-jk.herokuapp.com/api/messages')
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: 'ADD_MESSAGES', payload: data });
         setMessage(state.messages);
-      });
+        setIsLoading(false);
+      })
+      .catch((err) => alert(err));
   }, []);
 
   const postMessage = () => {
@@ -39,18 +43,29 @@ const Chat = () => {
     <div style={window.innerWidth > 700 ? { marginRight: '280px' } : {}}>
       <h1>chat</h1>
       <h3>{state.rooms[state.activeRoomId].name}</h3>
+      <div style={{ height: '400px', width: '300px', overflow: 'auto' }}>
+        {isLoading ? (
+          <img
+            src='https://www.essver.co.il/wp-content/plugins/ajaxify-wordpress-site-pro/images/configPageLoader.gif'
+            alt=''
+            width='100%'
+          />
+        ) : (
+          state.messages.map((message) => {
+            return (
+              <p style={{ padding: '10px 20px', background: 'white' }}>
+                <b>{message.from}: </b> {message.text}
+              </p>
+            );
+          })
+        )}
+      </div>
       <input
+        style={{ background: 'white' }}
         type='text'
         placeholder='message'
         onChange={(e) => setMessage(e.target.value)}
       />
-      {state.messages.map((message) => {
-        return (
-          <p>
-            <b>{message.from}: </b> {message.text}
-          </p>
-        );
-      })}
       <button onClick={postMessage}>add message</button>
     </div>
   );

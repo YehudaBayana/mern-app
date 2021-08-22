@@ -6,10 +6,15 @@ import { StoreContext } from '../../customHooks/ContextProvider';
 const Table = () => {
   const { state } = useContext(StoreContext);
   const [students, setStudents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetch('https://mern-jk.herokuapp.com/api/students')
       .then((res) => res.json())
-      .then((data) => setStudents(data));
+      .then((data) => {
+        setStudents(data);
+        setIsLoading(false);
+      });
   }, [state.forRender]);
 
   const columns = [
@@ -79,27 +84,36 @@ const Table = () => {
 
   return (
     <>
-      {newArrayOfObj && (
-        <div style={{ marginRight: '250px' }}>
-          <div
-            style={{
-              height: 400,
-              width: '90%',
-              margin: '0 auto',
-              direction: 'ltr',
-              background: 'white',
-            }}
-          >
-            <DataGrid
-              rows={newArrayOfObj}
-              columns={columns}
-              pageSize={5}
-              checkboxSelection
-              disableSelectionOnClick
-            />
-            <button>do some</button>
+      {isLoading ? (
+        <img
+          src='https://www.essver.co.il/wp-content/plugins/ajaxify-wordpress-site-pro/images/configPageLoader.gif'
+          alt=''
+          width='100%'
+        />
+      ) : (
+        newArrayOfObj && (
+          <div>
+            {/* style={{ marginRight: '250px' }} */}
+            <div
+              style={{
+                height: 400,
+                width: '90%',
+                margin: '0 auto',
+                direction: 'ltr',
+                background: 'white',
+              }}
+            >
+              <DataGrid
+                rows={newArrayOfObj}
+                columns={columns}
+                pageSize={5}
+                checkboxSelection
+                disableSelectionOnClick
+              />
+              <button>do some</button>
+            </div>
           </div>
-        </div>
+        )
       )}
     </>
   );

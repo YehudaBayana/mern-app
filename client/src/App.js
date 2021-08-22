@@ -7,6 +7,7 @@ import Main from './Components/Pages/main/Main';
 import AddStudent from './Components/Features/form/addStudent/AddStudent';
 import Chat from './Components/Pages/chat/Chat';
 import SideBar from './Components/Features/sideBar/SideBar';
+import Profile from './Components/Pages/profile/Profile';
 
 function App() {
   const { state } = useContext(StoreContext);
@@ -25,8 +26,11 @@ function App() {
               <Main user={state.user} />
               <AddStudent />
             </Route>
-            <Route exact path='/chat'>
+            <Route path='/chat'>
               <Chat />
+            </Route>
+            <Route path='/profile'>
+              <Profile />
             </Route>
           </Switch>
         </div>
